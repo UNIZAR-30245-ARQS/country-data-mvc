@@ -12,10 +12,10 @@ public class CountryDAO extends Observable {
 		this.dataAccessor = dataAccessor;
 	}
 	
-	public CountryDTO find(String country) throws Exception {
-		Integer population = dataAccessor.getPopulation(country);
+	public CountryDTO find(String countryName) throws Exception {
+		Integer population = dataAccessor.getPopulation(countryName);
 		if (population != null) {
-			return new CountryDTO(country, population);
+			return new CountryDTO(countryName, population);
 		} 
 		return null;
 	}
@@ -47,6 +47,13 @@ public class CountryDAO extends Observable {
 		dataAccessor.insertData(country.getName(), country.getPopulation());
 		setChanged();
 		notifyObservers(country);
+	}
+	
+	public void delete (String countryName) throws Exception {
+		CountryDTO countryDeleted = find (countryName);
+		dataAccessor.deleteData(countryName);
+		setChanged();
+		notifyObservers(countryDeleted);
 	}
 	
 	/**

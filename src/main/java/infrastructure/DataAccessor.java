@@ -54,6 +54,17 @@ public class DataAccessor {
 		// "Auto-commit" mode
 		save();
 	}
+		
+	public void deleteData(String key) throws Exception {
+		if (data.remove(key) == null) {
+			// I could ignore this. Deleting something which does not exist is normally
+			// not harmful, but I prefer to know if I try to delete something which is
+			// not there. I can always ignore this exception in the client code
+			throw new Exception("key did not exist in data, you can't delete it");
+		}
+		// "Auto-commit" mode
+		save();
+	}
 	
 	private HashMap<String,Integer> read() throws Exception  {
 		// Assume it is a small file, that we can read fast into memory				

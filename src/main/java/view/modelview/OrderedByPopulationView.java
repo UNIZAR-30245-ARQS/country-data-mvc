@@ -1,6 +1,7 @@
 package view.modelview;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 
 import javax.swing.*;
@@ -9,12 +10,18 @@ import javax.swing.event.*;
 import model.CountryDAO;
 import model.CountryDTO;
 
-public class OrderedByPopulationView extends JPanel implements Observer, ListSelectionListener {
-    private JList list;
+public class OrderedByPopulationView extends JPanel implements Observer, ActionListener {
+    
+	private static final String buttonText = "Delete Selected Country";
+	
+	private JList list;
     private DefaultListModel listModel;
+    private CountryDAO countryDAO;
+    
     
 	public OrderedByPopulationView(CountryDAO countryDAO) {
-        countryDAO.addObserver(this);
+		this.countryDAO = countryDAO;
+        this.countryDAO.addObserver(this);
 		
 		setLayout(new BorderLayout());
         
@@ -31,19 +38,26 @@ public class OrderedByPopulationView extends JPanel implements Observer, ListSel
                 
         //Create the list and put it in a scroll pane.
         list = new JList(listModel);        
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);               
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);        
         list.setVisibleRowCount(5);
-        list.addListSelectionListener(this);
+          
+        JScrollPane listScrollPane = new JScrollPane(list);
         
-        JScrollPane listScrollPane = new JScrollPane(list);        
+   		JButton deleteCountryButton = new JButton();
+   		deleteCountryButton.setText(buttonText);
+   		deleteCountryButton.setMargin(new Insets(0,0,0,0));
+   		deleteCountryButton.setActionCommand(buttonText);
+   		deleteCountryButton.addActionListener(this);
+   		
+   		JPanel containerPanel = new JPanel(new BorderLayout());
+   		containerPanel.add(listScrollPane, BorderLayout.CENTER);
+   		containerPanel.add(deleteCountryButton, BorderLayout.SOUTH);
         
-        this.add(listScrollPane, BorderLayout.CENTER);
+        this.add(containerPanel, BorderLayout.CENTER);
     }
 	
 	@Override
 	public void update(Observable o, Object arg) {		
-		// A change in the model, get new data and refresh view
-		CountryDAO countryDAO = (CountryDAO) o;
 		listModel.clear();
 		try {
         	for (CountryDTO country: countryDAO.findAllOrderedByPopulation()) {
@@ -57,9 +71,20 @@ public class OrderedByPopulationView extends JPanel implements Observer, ListSel
 	}
 
 	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		// AÑADIR UN BOTÓN DE BORRAR EL ELEMENTO SELECCIONADO Y ASÍ
-		// TENGO ALGO MÁS DE JUEGO
-		
+	public void actionPerformed(ActionEvent e) {		
+		// Button click
+		if (e.getActionCommand().equals(buttonText)) {
+			String selected = (String)list.getSelectedValue();
+			if (selected != null) {
+				String countryName = selected.substring(0, selected.indexOf(','));
+				try {
+					countryDAO.delete(countryName);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					// Deleting a country which does not exist should not happen. Exit
+					System.exit(1);
+				}
+			}
+		}
 	}
 }
