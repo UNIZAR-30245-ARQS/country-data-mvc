@@ -19,7 +19,8 @@ public class MVApplicationMainPanel extends JPanel implements ActionListener {
 	private JLabel countryPopulationFieldLabel;
 
 
-	public MVApplicationMainPanel(CountryDAO countryDAO) {
+	public MVApplicationMainPanel(CountryDAO countryDAO, 
+			OrderedByPopulationView orderedView, StyledTextView styledView) {
 		super(new BorderLayout());
 
 		this.countryDAO = countryDAO;
@@ -56,8 +57,8 @@ public class MVApplicationMainPanel extends JPanel implements ActionListener {
 						BorderFactory.createEmptyBorder(3,3,3,3)));
 
 		this.add(textInputPanel, BorderLayout.NORTH);
-		this.add(new OrderedByPopulationView(countryDAO), BorderLayout.CENTER);
-		this.add(new StyledTextView(countryDAO), BorderLayout.SOUTH);		
+		this.add(orderedView, BorderLayout.CENTER);
+		this.add(styledView, BorderLayout.SOUTH);		
 	}
 
 	@Override

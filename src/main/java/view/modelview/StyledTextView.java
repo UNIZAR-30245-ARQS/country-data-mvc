@@ -34,9 +34,7 @@ public class StyledTextView extends JPanel implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		// A change in the model, get new data and refresh view
-		CountryDAO countryDAO = (CountryDAO) o;
 		CountryDTO countryDTO = (CountryDTO) arg;	
-
 
 		editorPane.setText("<h2><strong>"+countryDTO.getName()+", "+
 				countryDTO.getPopulation()+"</strong></h2>");	
