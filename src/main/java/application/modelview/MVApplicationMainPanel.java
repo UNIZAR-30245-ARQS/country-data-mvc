@@ -9,7 +9,7 @@ import view.modelview.*;
 import model.*;
 
 public class MVApplicationMainPanel extends JPanel implements ActionListener {
-	
+
 	private static final String buttonText = "Insert/Update Country";
 
 	private CountryDAO countryDAO;
@@ -17,23 +17,23 @@ public class MVApplicationMainPanel extends JPanel implements ActionListener {
 	private JTextField countryPopulationField;
 	private JLabel countryNameFieldLabel; 
 	private JLabel countryPopulationFieldLabel;
-	
+
 
 	public MVApplicationMainPanel(CountryDAO countryDAO) {
 		super(new BorderLayout());
-		
+
 		this.countryDAO = countryDAO;
-		
+
 		countryNameField = new JTextField(10);
 
 		countryNameFieldLabel = new JLabel("Country: ");
 		countryNameFieldLabel.setLabelFor(countryNameField);
 
 		countryPopulationField = new JTextField(10);
-		
+
 		countryPopulationFieldLabel = new JLabel("Population: ");
 		countryPopulationFieldLabel.setLabelFor(countryPopulationField);
-				
+
 		JButton addCountryButton = new JButton();
 		addCountryButton.setText(buttonText);
 		addCountryButton.setMargin(new Insets(0,0,0,0));
@@ -66,7 +66,7 @@ public class MVApplicationMainPanel extends JPanel implements ActionListener {
 		if (e.getActionCommand().equals(buttonText)) {
 			countryNameFieldLabel.setForeground(Color.black);
 			countryPopulationFieldLabel.setForeground(Color.black);
-			
+
 			String candidateCountryName = countryNameField.getText();
 			int candidatePopulation = -1;
 			try {
@@ -75,7 +75,7 @@ public class MVApplicationMainPanel extends JPanel implements ActionListener {
 				// give it a wrong value, so the validators catch it and warn the user
 				candidatePopulation = -1;
 			}
-			
+
 			// User input validation is very simple			
 			if (countryDAO.isValidCountryName(candidateCountryName)) {
 				if (countryDAO.isValidCountryPopulation(candidatePopulation)) {
@@ -94,11 +94,11 @@ public class MVApplicationMainPanel extends JPanel implements ActionListener {
 					}
 				}
 			} 
-			
+
 			if (!countryDAO.isValidCountryName(candidateCountryName)) {				
 				countryNameFieldLabel.setForeground(Color.red);
 			}
-			
+
 			if (!countryDAO.isValidCountryPopulation(candidatePopulation)) {				
 				countryPopulationFieldLabel.setForeground(Color.red);
 			}

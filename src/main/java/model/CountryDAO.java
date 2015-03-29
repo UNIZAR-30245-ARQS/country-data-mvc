@@ -7,11 +7,11 @@ import infrastructure.*;
 
 public class CountryDAO extends Observable {
 	private DataAccessor dataAccessor;
-	
+
 	public CountryDAO(DataAccessor dataAccessor) {		
 		this.dataAccessor = dataAccessor;
 	}
-	
+
 	public CountryDTO find(String countryName) throws Exception {
 		Integer population = dataAccessor.getPopulation(countryName);
 		if (population != null) {
@@ -19,7 +19,7 @@ public class CountryDAO extends Observable {
 		} 
 		return null;
 	}
-	
+
 	public List<CountryDTO> findAll() throws Exception {
 		ArrayList<CountryDTO> list = new ArrayList<CountryDTO>();
 		for (String name: dataAccessor.getAllCountryNames()) {
@@ -27,7 +27,7 @@ public class CountryDAO extends Observable {
 		}
 		return list;
 	}
-	
+
 	public List<CountryDTO> findAllOrderedByPopulation() throws Exception {
 		ArrayList<CountryDTO> orderedList = new ArrayList<CountryDTO>();
 		for (String name: dataAccessor.getAllCountryNames()) {
@@ -36,26 +36,26 @@ public class CountryDAO extends Observable {
 		Collections.sort(orderedList);
 		return orderedList;
 	}
-	
+
 	public void update (CountryDTO country) throws Exception{
 		dataAccessor.updateData(country.getName(), country.getPopulation());
 		setChanged();
 		notifyObservers(country);
 	}
-	
+
 	public void insert (CountryDTO country) throws Exception {
 		dataAccessor.insertData(country.getName(), country.getPopulation());
 		setChanged();
 		notifyObservers(country);
 	}
-	
+
 	public void delete (String countryName) throws Exception {
 		CountryDTO countryDeleted = find (countryName);
 		dataAccessor.deleteData(countryName);
 		setChanged();
 		notifyObservers(countryDeleted);
 	}
-	
+
 	/**
 	 * This checks if name may be correct for a new
 	 * country: name is not empty and population is > 0. 
@@ -64,7 +64,7 @@ public class CountryDAO extends Observable {
 	public boolean isValidCountryName(String name) {
 		return name != null && name.length() > 0;
 	}
-	
+
 	/**
 	 * This checks if population may be correct for a new
 	 * country: population is > 0. 
