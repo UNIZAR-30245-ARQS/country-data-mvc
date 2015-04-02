@@ -20,7 +20,7 @@ public class MVApplicationMainPanel extends JPanel implements ActionListener {
 
 
 	public MVApplicationMainPanel(CountryDAO countryDAO, 
-			OrderedByPopulationView orderedView, StyledTextView styledView) {
+			JPanel orderedView, JPanel styledView) {
 		super(new BorderLayout());
 
 		this.countryDAO = countryDAO;

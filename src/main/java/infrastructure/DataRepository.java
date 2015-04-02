@@ -3,11 +3,21 @@ package infrastructure;
 import java.io.*;
 import java.util.*;
 
-public class DataAccessor {
+/**
+ * A repository of data formed by tuples <String, Integer>
+ * where the Strings are Keys (must be unique...).
+ * The repository is a simple text file.
+ * All the operations that modify the contents of this
+ * repository perform an "autocommit" (i.e., they save the
+ * data to disk).
+ * @author rbejar
+ *
+ */
+public class DataRepository {
 	private HashMap<String,Integer> data;
 	private String filePath;
 
-	public DataAccessor(String filePath) throws Exception {
+	public DataRepository(String filePath) throws Exception {
 		this.filePath = filePath;
 		data = read();
 	}
@@ -20,11 +30,11 @@ public class DataAccessor {
 		write(data);
 	}
 
-	public Integer getPopulation(String country) {
-		return data.get(country);
+	public Integer getValue(String key) {
+		return data.get(key);
 	}
 
-	public List<String> getAllCountryNames() {
+	public List<String> getAllKeys() {
 		// I create and return a list instead of returning the keySet
 		// because changes in that keySet would be reflected in the
 		// HashMap, and I do not want to allow that

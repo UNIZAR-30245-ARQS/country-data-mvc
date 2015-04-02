@@ -1,6 +1,6 @@
 package application;
 
-import infrastructure.DataAccessor;
+import infrastructure.DataRepository;
 
 import java.io.*;
 import java.nio.file.*;
@@ -17,7 +17,7 @@ public abstract class ApplicationLauncher {
 	// clicking on it and Build Path > Use as Source Folder
 	private String originalDataFileName = "CountryData.txt";
 
-	protected DataAccessor dataAccessor;
+	protected DataRepository dataAccessor;
 	protected CountryDAO countryDAO;
 
 	/*public static void main(String[] args) {
@@ -27,7 +27,7 @@ public abstract class ApplicationLauncher {
 	public ApplicationLauncher() {
 		try {
 			Path dataFilePath = initDataFile();
-			dataAccessor = new DataAccessor(dataFilePath.toString());		
+			dataAccessor = new DataRepository(dataFilePath.toString());		
 			countryDAO = new CountryDAO(dataAccessor);
 		} catch (Exception e) {
 			e.printStackTrace();

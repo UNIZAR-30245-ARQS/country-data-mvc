@@ -7,7 +7,6 @@ import javax.swing.*;
 
 import model.CountryDAO;
 import model.CountryDTO;
-import view.mvp.*;
 
 public class MVPApplicationMainPanel extends JPanel implements ActionListener {
 	private static final String buttonText = "Insert/Update Country";
@@ -20,8 +19,8 @@ public class MVPApplicationMainPanel extends JPanel implements ActionListener {
 
 
 	public MVPApplicationMainPanel(CountryDAO countryDAO, 
-			OrderedByPopulationPassiveView orderedView,
-			StyledTextPassiveView styledView) {
+			JPanel orderedView,
+			JPanel styledView) {
 		
 		super(new BorderLayout());
 

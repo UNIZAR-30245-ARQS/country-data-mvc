@@ -7,6 +7,13 @@ import java.util.List;
 
 import javax.swing.*;
 
+/**
+* This passive view reflects changes in the model (but those changes are 
+* triggered by its Presenter) and responds to user events (but it is
+* its Presenter the responsible for acting accordingly to each user event)
+* @author rbejar
+*
+*/
 public class OrderedByPopulationPassiveView extends JPanel implements ActionListener {
 	// I can make this public safely, it is only a constant 
 	public static final String buttonText = "Delete Selected Country";

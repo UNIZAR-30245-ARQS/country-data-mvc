@@ -3,7 +3,6 @@ package application.modelview;
 import javax.swing.*;
 
 import view.modelview.*;
-import model.*;
 import application.*;
 
 public class MVApplicationLauncher extends ApplicationLauncher {	

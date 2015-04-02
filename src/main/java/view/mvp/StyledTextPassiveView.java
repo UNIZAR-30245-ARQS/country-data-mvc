@@ -1,16 +1,11 @@
 package view.mvp;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
-import java.util.Observable;
-
 import javax.swing.*;
 
-import model.CountryDAO;
-import model.CountryDTO;
-
 /**
- * This passive view just reflects some changes. It does not respond to user
+ * This passive view just reflects some changes in the model (but those changes are 
+ * triggered by its Presenter). It does not respond to user
  * events (so it does not implement ActionListener).
  * @author rbejar
  *
