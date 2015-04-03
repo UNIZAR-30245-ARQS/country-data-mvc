@@ -1,11 +1,4 @@
-buildscript {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-    }
-}
-
-// Para crear gradlew
+// To create gradlew
 task wrapper(type: Wrapper) {
     gradleVersion = '2.2.1'
 }
@@ -14,19 +7,16 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'application'
 
-mainClassName = 'application.modelview.MVApplicationLauncher'
-
-jar {
-    baseName = 'countries-example'
-    version = '1.0.0'
+// Esta propiedad del plugin application indica donde está la clase
+// con el main de la aplicación. Como tenemos varias, la podemos
+// dejar dinámica. Así podemos usar:
+// `$ gradle -PmainClass=ClaseQueSea run` para
+// ejecutar distintas clases que tengan main
+if (project.hasProperty("mainClass")) {
+    mainClassName = mainClass
+} else {
+    mainClassName = "application.modelview.MVApplicationLauncher"
 }
+
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-}
-
-dependencies {        
-} 
