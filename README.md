@@ -1,11 +1,11 @@
 # Model-View in Java Swing example
-Course: Arquitecturas Software (30245) (Software Architecture)
+Course: Arquitecturas Software (30245) (Software Architecture), Universidad de Zaragoza (University of Zaragoza).
 [From the degree in Computer Science, specialization in Software Engineering, EINA, UNIZAR](http://titulaciones.unizar.es/asignaturas/30245/index14.html).
 
 ## Description
-This is a simple, self-contained Java Swing program designed to be a bare-bones example of the Model-View and [Model-View-Presenter with Passive View](http://martinfowler.com/eaaDev/PassiveScreen.html) design patterns. 
+This is a Java Swing program designed to be a bare-bones example of the Model-View and [Model-View-Presenter with Passive View](http://martinfowler.com/eaaDev/PassiveScreen.html) design patterns. It does not have any external dependency besides Java 1.7, and does not use any Model-View framework. 
 
-When launched, it searches for a specific text file in your temp directory. If it does not find it, it creates one, populates it with some initial data (countries and populations) and uses that as the data repository for the application (if it finds it, it uses it). This allows us to have a self-contained sipmle application where users can create, modify and delete data and make this changes permanent between runs (until the temp directory is cleaned).
+It is self-contained, and uses a simple text file as data repository in order to focus on the MV patterns.  When launched, it searches for a specific text file in your temp directory. If it does not find it, it creates one, populates it with some initial data (countries and populations) and uses that as the data repository for the application (if it finds it, it uses it). This allows us to have a self-contained application where users can create, modify and delete data and make this changes permanent between runs (until the temp directory is cleaned).
 
 # Use
 Clone this repository in your computer:
