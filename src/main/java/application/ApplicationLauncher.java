@@ -48,7 +48,10 @@ public abstract class ApplicationLauncher {
 		} catch (FileAlreadyExistsException e) {
 			// Directory already exists, it must be from a previous run,
 			// not a problem.
-		} 
+		}
+
+		// Load the original data
+		List<String> values = readFromFile(originalDataFileName);
 
 		Path filePath = Paths.get("ctrydata-arqs-30245-DBfile.txt");			
 		try {
@@ -59,8 +62,8 @@ public abstract class ApplicationLauncher {
 			return dirPath.resolve(filePath);
 		} 	
 
-		// Populate the file with the original data
-		List<String> values = readFromFile(originalDataFileName);					
+		// If we are here, we have to copy the original data to
+		// the "temp" file
 		writeToFile(filePath.toString(), values);			
 
 		return dirPath.resolve(filePath);		
@@ -69,10 +72,10 @@ public abstract class ApplicationLauncher {
 	private List<String> readFromFile(String resourceFileName) throws Exception  {
 		// Assume it is a small file, that we can read fast into memory
 		ClassLoader classLoader = getClass().getClassLoader();			
-		File file = new File(classLoader.getResource(resourceFileName).getFile());
-
+		//File file = new File(classLoader.getResource(resourceFileName).getFile());
+		InputStream input = classLoader.getResourceAsStream(resourceFileName);
 		List<String> data = new ArrayList<String>();
-		try (Scanner scanner =  new Scanner(file, "UTF-8")) {
+		try (Scanner scanner =  new Scanner(input, "UTF-8")) {
 			while (scanner.hasNextLine()){
 				data.add(scanner.nextLine());		        
 			}      
