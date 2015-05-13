@@ -20,10 +20,6 @@ public abstract class ApplicationLauncher {
 	protected DataRepository dataAccessor;
 	protected CountryDAO countryDAO;
 
-	/*public static void main(String[] args) {
-		ApplicationLauncher applauncher = new ApplicationLauncher();				
-	}*/
-
 	public ApplicationLauncher() {
 		try {
 			Path dataFilePath = initDataFile();
