@@ -72,7 +72,6 @@ public abstract class ApplicationLauncher {
 	private List<String> readFromFile(String resourceFileName) throws Exception  {
 		// Assume it is a small file, that we can read fast into memory
 		ClassLoader classLoader = getClass().getClassLoader();			
-		//File file = new File(classLoader.getResource(resourceFileName).getFile());
 		InputStream input = classLoader.getResourceAsStream(resourceFileName);
 		List<String> data = new ArrayList<String>();
 		try (Scanner scanner =  new Scanner(input, "UTF-8")) {
