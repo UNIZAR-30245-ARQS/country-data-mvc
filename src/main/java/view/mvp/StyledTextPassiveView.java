@@ -8,7 +8,10 @@ import javax.swing.*;
  * triggered by its Presenter). It does not respond to user
  * events (so it does not implement ActionListener).
  * @author rbejar
- *
+ * This class depends on StyledTextPresenter, but that is not really necessary.
+ * The other passive view (OrderedByPopulationPassiveView) depends on its presenter
+ * because it relays it some user action events, and I have chosen to keep the
+ * design of both views as similar as possible.
  */
 public class StyledTextPassiveView extends JPanel {	
 	private JEditorPane editorPane;
@@ -35,7 +38,8 @@ public class StyledTextPassiveView extends JPanel {
 		this.add(editorScrollPane, BorderLayout.CENTER);
 	}
 	
-	public StyledTextPresenter getPresenter() { 
+
+	public StyledTextPresenter getPresenter() {
 		return presenter;
 	}
 	
