@@ -1,5 +1,5 @@
 # Model-View in Java Swing example
-Course: Arquitecturas Software (30245) (Software Architecture), Universidad de Zaragoza (University of Zaragoza).
+Course: Arquitecturas Software (30245) (Software Architecture), Universidad Zaragoza.
 [From the degree in Computer Science, specialization in Software Engineering, EINA, UNIZAR](http://titulaciones.unizar.es/asignaturas/30245/index14.html).
 
 ## Description
